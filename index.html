@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Long's Portfolio</title>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <noscript>javascript is disabled.</noscript>
+    <header>
+      <h1>Long's Portfolio</h1>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skillset.html">Skillset</a></li>
+          <li><a href="experiences.html">Experiences</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="experiments.html">Experiments</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main></main>
+
+    <footer>
+      <p><small>&copy; 2025 Long</small></p>
+    </footer>
+    <script>
+      class HelloConsole extends HTMLElement {
+        connectedCallback() {
+          console.log("Hello world!");
+        }
+      }
+      customElements.define("hello-console", HelloConsole);
+    </script>
+    <hello-console></hello-console>
+    <script src="scripts.js"></script>
+  </body>
+</html>

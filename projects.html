@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Long's Portfolio</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+  </head>
+  <body>
+    <noscript>javascript is disabled.</noscript>
+    <header>
+      <h1>Projects</h1>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skillset.html">Skillset</a></li>
+          <li><a href="experiences.html">Experiences</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="experiments.html">Experiments</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="school" aria-labelledby="school-h2">
+        <h2 id="school-h2">School & Personal Projects</h2>
+
+        <project-card
+          tags="Next.js, TypeScript, Redis, Real-time"
+          date="2024-11"
+        >
+          <h2>Redis Chat Platform</h2>
+          <picture>
+            <source srcset="assets/chat-360.jpg" media="(max-width: 600px)" />
+            <img
+              src="assets/redis.jpg"
+              alt="Chat UI with online users and threads featuring message threads, online user list, and real-time updates"
+              width="360"
+            />
+          </picture>
+          <p>
+            Built a real-time messaging platform with TypeScript and Next.js App
+            Router, achieving 300ms response times and 99.9% uptime. Implemented
+            Redis pub/sub for instant message delivery, Kinde Auth for secure
+            authentication, and Cloudinary for image uploads with moderation
+            pipeline. Features include live user presence, threaded
+            conversations, and CI/CD deployment with comprehensive monitoring.
+          </p>
+          <a href="https://github.com/Longhodac/ChatHub-Redis-Chat-app"
+            >View on GitHub</a
+          >
+          <p class="meta">
+            Includes CI/CD, deployment scripts, and monitoring dashboard
+          </p>
+        </project-card>
+
+        <project-card tags="React, Node.js, MongoDB, E-commerce" date="2024-09">
+          <h2>E-Commerce Shopping Cart</h2>
+          <picture>
+            <img
+              src="assets/ecommerce.jpg"
+              alt="Modern e-commerce interface showing product grid with shopping cart and checkout flow"
+              width="360"
+            />
+          </picture>
+          <p>
+            Developed a full-stack e-commerce platform with React frontend and
+            Node.js backend. Implemented secure payment processing with Stripe
+            integration, inventory management system, and user authentication.
+            Features responsive product catalog with filtering, shopping cart
+            with real-time updates, order history tracking, and admin dashboard
+            for product management. Optimized database queries for fast product
+            search and checkout.
+          </p>
+          <a href="https://github.com/yourusername/ecommerce-cart"
+            >View on GitHub</a
+          >
+          <p class="meta">
+            Payment processing with Stripe, admin dashboard, inventory tracking
+          </p>
+        </project-card>
+
+        <project-card
+          tags="Python, TensorFlow, Machine Learning"
+          date="2024-06"
+        >
+          <h2>Image Classification Model</h2>
+          <picture>
+            <img
+              src="assets/ml-model.jpg"
+              alt="Neural network visualization and classification results showing accuracy metrics"
+              width="360"
+            />
+          </picture>
+          <p>
+            Built a deep learning image classification model using TensorFlow
+            and Keras, achieving 94% accuracy on test dataset. Implemented
+            transfer learning with pre-trained ResNet50 architecture, custom
+            data augmentation pipeline, and model optimization techniques.
+            Created REST API with Flask for model deployment and integrated with
+            web interface for real-time image classification. Includes
+            comprehensive testing suite and performance benchmarks.
+          </p>
+          <a href="https://github.com/yourusername/image-classifier"
+            >View on GitHub</a
+          >
+          <p class="meta">
+            94% accuracy, REST API deployment, transfer learning implementation
+          </p>
+        </project-card>
+
+        <project-card tags="Vue.js, Firebase, PWA, Mobile" date="2024-03">
+          <h2>Task Management PWA</h2>
+          <picture>
+            <img
+              src="assets/task-manager.jpg"
+              alt="Progressive web app interface showing task lists, calendar view, and mobile responsive design"
+              width="360"
+            />
+          </picture>
+          <p>
+            Created a Progressive Web App for collaborative task management
+            using Vue.js 3 and Firebase. Implemented offline-first architecture
+            with service workers, real-time collaboration features,
+            drag-and-drop task organization, and push notifications. Features
+            include project boards, deadline reminders, team member assignments,
+            and calendar integration. Achieved 95+ Lighthouse score across all
+            metrics and supports installation on mobile and desktop devices.
+          </p>
+          <a href="https://github.com/yourusername/task-pwa">View on GitHub</a>
+          <p class="meta">
+            Offline-first, real-time sync, installable on mobile and desktop
+          </p>
+        </project-card>
+      </section>
+    </main>
+
+    <footer>
+      <p><small>&copy; 2025 Long</small></p>
+    </footer>
+    <script>
+      class HelloConsole extends HTMLElement {
+        connectedCallback() {
+          console.log("Hello world!");
+        }
+      }
+      customElements.define("hello-console", HelloConsole);
+    </script>
+    <hello-console></hello-console>
+    <script src="scripts.js"></script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experiences</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+  </head>
+  <body>
+    <noscript>javascript is disabled.</noscript>
+    <header>
+      <h1>Long's Portfolio</h1>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skillset.html">Skillset</a></li>
+          <li><a href="experiences.html">Experiences</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="experiments.html">Experiments</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="internships" aria-labelledby="internships-h2">
+        <h2 id="internships-h2">Internships & Research</h2>
+
+        <experience-item role="article" aria-labelledby="ujima-title">
+          <h3 id="ujima-title">
+            Software Engineer & Research Assistant — UJIMA S&P Lab (UC San
+            Diego)
+          </h3>
+          <p>
+            <time datetime="2025-06">Jun 2025</time> – Present · La Jolla, CA
+          </p>
+          <dl>
+            <dt>Focus</dt>
+            <dd>Misinformation &amp; AI, NLP on TikTok data</dd>
+            <dt>Stack</dt>
+            <dd>Python, REST APIs, Pandas, PostgreSQL</dd>
+          </dl>
+          <ul>
+            <li>
+              Built data pipeline to ingest/clean/merge metadata for
+              <strong>3,000+ TikTok videos</strong>.
+            </li>
+            <li>
+              Applied topic modeling &amp; sentiment analysis; informed research
+              at 2 universities (ASU, Penn State).
+            </li>
+            <li>
+              Presented findings via slide decks with descriptive stats &amp;
+              visualizations; ran Agile rituals.
+            </li>
+          </ul>
+        </experience-item>
+
+        <experience-item role="article" aria-labelledby="deanza-title">
+          <h3 id="deanza-title">
+            Intro to C++ Teaching Assistant — De Anza College
+          </h3>
+          <p>
+            <time datetime="2023-09">Sep 2023</time> –
+            <time datetime="2023-12">Dec 2023</time> · Cupertino, CA
+          </p>
+          <ul>
+            <li>
+              Mentored <strong>60+ students</strong> in office hours &amp; pair
+              programming; custom practice boosted exam scores ~15%.
+            </li>
+            <li>
+              Created programming problem sets &amp; study guides; reinforced
+              OOP, design idioms, and runtime analysis.
+            </li>
+          </ul>
+        </experience-item>
+      </section>
+
+      <section aria-labelledby="next-steps">
+        <h2 id="next-steps">Next steps</h2>
+        <p>
+          See detailed write-ups on the
+          <a href="projects.html">Projects</a> page or
+          <a href="contact.html">contact me</a> for more info.
+        </p>
+        <p>Degree progress: <progress value="75" max="100">75%</progress></p>
+      </section>
+    </main>
+
+    <footer>
+      <p><small>&copy; 2025 Long</small></p>
+    </footer>
+    <script>
+      class HelloConsole extends HTMLElement {
+        connectedCallback() {
+          console.log("Hello world!");
+        }
+      }
+      customElements.define("hello-console", HelloConsole);
+    </script>
+    <hello-console></hello-console>
+    <script src="scripts.js"></script>
+  </body>
+</html>

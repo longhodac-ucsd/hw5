@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Long's Portfolio</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+  </head>
+  <body>
+    <header>
+      <noscript>javascript is disabled.</noscript>
+      <h1>Skillset</h1>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skillset.html">Skillset</a></li>
+          <li><a href="experiences.html">Experiences</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="experiments.html">Experiments</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section aria-labelledby="overview">
+        <h2 id="overview">Overview</h2>
+        <p>
+          I focus on <strong>backend systems</strong> and
+          <em>data-driven</em> apps. Here’s a snapshot of my current tools and
+          comfort levels.<br />
+        </p>
+
+        <svg width="220" height="18" role="img" aria-label="Divider line">
+          <line x1="0" y1="9" x2="220" y2="9" stroke="black" stroke-width="2" />
+        </svg>
+      </section>
+
+      <section aria-labelledby="langs">
+        <h2 id="langs">Languages</h2>
+        <article>
+          <h3>Daily Drivers</h3>
+          <ul>
+            <li><b>Python</b> — scripting, data tasks</li>
+            <li><strong>JavaScript/TypeScript</strong> — web + Node</li>
+            <li><em>C/C++</em> — systems & coursework</li>
+          </ul>
+          <p>
+            Proficiency (self-rated):
+            <progress value="30" max="100">30%</progress>
+          </p>
+        </article>
+
+        <article>
+          <h3>Also Used</h3>
+          <ol>
+            <li>Java</li>
+            <li>SQL</li>
+            <li>Go (learning)</li>
+          </ol>
+        </article>
+      </section>
+
+      <section aria-labelledby="frameworks">
+        <h2 id="frameworks">Frameworks & Libraries</h2>
+        <article>
+          <h3>Web</h3>
+          <ul>
+            <li>React (CSR basics) / Next.js (routing, API routes)</li>
+            <li>Express / FastAPI for simple services</li>
+          </ul>
+        </article>
+
+        <article>
+          <h3>Data & ML (intro)</h3>
+          <ul>
+            <li>Pandas / NumPy — analysis & ETL stubs</li>
+            <li>scikit-learn — classic ML pipelines</li>
+          </ul>
+          <p><i>Note:</i> deeper ML work is on github.</p>
+        </article>
+      </section>
+
+      <section aria-labelledby="tools">
+        <h2 id="tools">Tools & Platforms</h2>
+        <article>
+          <h3>Dev & Ops</h3>
+          <ul>
+            <li>Git/GitHub</li>
+            <li>Docker (basics)</li>
+            <li>Linux CLI</li>
+          </ul>
+        </article>
+
+        <article>
+          <h3>Cloud & Databases</h3>
+          <ul>
+            <li>AWS (S3/EC2 — beginner)</li>
+            <li>MongoDB / Postgres</li>
+          </ul>
+        </article>
+      </section>
+
+      <section aria-labelledby="notes">
+        <h2 id="notes">Notes</h2>
+        <div>
+          <span>Learning goals:</span>
+          <ul>
+            <li>Improve testing habits</li>
+            <li>Deeper performance profiling</li>
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="ack">
+        <h2 id="ack">Acknowledgments</h2>
+        <dialog open>
+          <p>
+            Skills reflect recent coursework & projects. (Dialog shown, no JS.)
+          </p>
+          <button type="button">OK</button>
+        </dialog>
+      </section>
+    </main>
+
+    <footer>
+      <p><small>&copy; 2025 Long</small></p>
+    </footer>
+    <script>
+      class HelloConsole extends HTMLElement {
+        connectedCallback() {
+          console.log("Hello world!");
+        }
+      }
+      customElements.define("hello-console", HelloConsole);
+    </script>
+    <hello-console></hello-console>
+    <script src="scripts.js"></script>
+  </body>
+</html>

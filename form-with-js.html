@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Contact Form (No JS)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="scripts.js" defer></script>
+
+  </head>
+  <body>
+    <button
+      id="theme-toggle"
+      hidden
+      type="button"
+      aria-label="Toggle color theme"
+    ></button>
+
+    <noscript>
+      <p style="text-align: center; padding: 0.5rem; font-size: 0.9rem">
+        Theme switching is limited because JavaScript is disabled.
+      </p>
+    </noscript>
+    <main>
+      <section class="form-card" aria-labelledby="contact-heading">
+        <h1 id="contact-heading">Contact Us</h1>
+        <p>
+          Have a question or comment? Fill out the form below and we’ll get back
+          to you.
+        </p>
+
+        <form action="https://httpbin.org/post" method="post" novalidate>
+          <fieldset>
+            <legend>Your details</legend>
+
+            <div class="form-field">
+              <label for="name">
+                Name <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                autocomplete="name"
+                minlength="2"
+                maxlength="50"
+                pattern="[A-Za-z .'-]{2,50}"
+                placeholder="Jane Doe"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="email">
+                Email <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                autocomplete="email"
+                minlength="5"
+                maxlength="80"
+                placeholder="you@example.com"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="phone"> Phone (optional) </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                autocomplete="tel"
+                maxlength="20"
+                pattern="[0-9()+ .-]*"
+                placeholder="+1 (555) 123-4567"
+              />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Message</legend>
+
+            <div class="form-field">
+              <label for="subject"> Subject </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                maxlength="80"
+                pattern="[A-Za-z0-9 ,.'?!-]{0,80}"
+                placeholder="Short summary of your message"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="comments">
+                Comments <span class="required" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="comments"
+                name="comments"
+                required
+                minlength="5"
+                maxlength="500"
+                placeholder="This is a test!"
+              ></textarea>
+            </div>
+          </fieldset>
+
+          <input type="hidden" name="possible_bot" value="true" />
+          <input type="hidden" name="form-errors" id="form-errors" />
+
+          <div class="messages">
+            <output id="error-message" class="message-error"></output>
+            <output id="info-message" class="message-info"></output>
+          </div>
+
+          <button type="submit">Send message</button>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.querySelector("form");
+        const errorOutput = document.getElementById("error-message");
+        const infoOutput = document.getElementById("info-message");
+        const textarea = document.getElementById("comments");
+        const formErrorsField = document.getElementById("form-errors");
+
+        const formErrors = [];
+
+        const patternFields = [
+          { selector: "#name", allowed: "A-Za-z .'-" },
+          { selector: "#subject", allowed: "A-Za-z0-9 ,.'?!-" },
+          { selector: "#phone", allowed: "0-9()+ .-" },
+        ];
+
+        patternFields.forEach((conf) => {
+          const field = document.querySelector(conf.selector);
+          if (!field) return;
+
+          const allowedRegex = new RegExp("^[" + conf.allowed + "]*$");
+          const stripRegex = new RegExp("[^" + conf.allowed + "]", "g");
+
+          field.addEventListener("input", () => {
+            if (!allowedRegex.test(field.value)) {
+              field.value = field.value.replace(stripRegex, "");
+              flashField(field, "You typed an illegal character.");
+            }
+          });
+        });
+
+        let flashTimeout;
+        function flashField(field, message) {
+          errorOutput.textContent = message;
+          field.classList.add("flash");
+
+          clearTimeout(flashTimeout);
+          flashTimeout = setTimeout(() => {
+            errorOutput.textContent = "";
+            field.classList.remove("flash");
+          }, 1500);
+        }
+
+        const maxLenAttr = textarea.getAttribute("maxlength");
+        const maxLen = maxLenAttr ? parseInt(maxLenAttr, 10) : 500;
+
+        function updateTextCount() {
+          const remaining = maxLen - textarea.value.length;
+          infoOutput.textContent = remaining + " characters remaining";
+
+          if (remaining <= 50 && remaining >= 0) {
+            infoOutput.classList.add("near-limit");
+          } else {
+            infoOutput.classList.remove("near-limit");
+          }
+
+          if (remaining < 0) {
+            textarea.setCustomValidity(
+              "You have exceeded the maximum allowed length."
+            );
+          } else {
+            textarea.setCustomValidity("");
+          }
+        }
+
+        textarea.addEventListener("input", updateTextCount);
+        updateTextCount();
+
+        function validateField(field) {
+          field.setCustomValidity("");
+
+          const validity = field.validity;
+          if (validity.valid) return;
+
+          const label = form.querySelector('label[for="' + field.id + '"]');
+          const fieldName = label
+            ? label.textContent.trim().replace("*", "").trim()
+            : field.name;
+
+          if (validity.valueMissing) {
+            field.setCustomValidity(fieldName + " is required.");
+          } else if (validity.typeMismatch && field.type === "email") {
+            field.setCustomValidity("Please enter a valid email address.");
+          } else if (validity.tooShort) {
+            field.setCustomValidity(fieldName + " is too short.");
+          } else if (validity.tooLong) {
+            field.setCustomValidity(fieldName + " is too long.");
+          } else if (validity.patternMismatch) {
+            field.setCustomValidity(
+              fieldName + " contains invalid characters."
+            );
+          }
+        }
+
+        form.addEventListener("input", (e) => {
+          const target = e.target;
+          if (
+            !(
+              target instanceof HTMLInputElement ||
+              target instanceof HTMLTextAreaElement
+            )
+          )
+            return;
+
+          validateField(target);
+          errorOutput.textContent = "";
+        });
+
+        form.addEventListener("submit", (e) => {
+          errorOutput.textContent = "";
+          infoOutput.textContent = "";
+
+          let hasErrorsThisAttempt = false;
+          const attemptErrors = [];
+
+          const fields = form.querySelectorAll("input, textarea");
+
+          fields.forEach((field) => {
+            if (field.type === "hidden") return;
+
+            validateField(field);
+
+            if (!field.checkValidity()) {
+              hasErrorsThisAttempt = true;
+              attemptErrors.push({
+                field: field.name,
+                value: field.value,
+                message: field.validationMessage,
+              });
+            }
+          });
+
+          if (hasErrorsThisAttempt) {
+            e.preventDefault();
+
+            formErrors.push({
+              attemptedAt: new Date().toISOString(),
+              errors: attemptErrors,
+            });
+
+            errorOutput.textContent =
+              "Please fix the highlighted fields before submitting.";
+
+            form.reportValidity();
+          } else {
+            if (formErrorsField) {
+              formErrorsField.value = JSON.stringify(formErrors);
+            }
+
+            infoOutput.textContent = "Thanks! Your message is being sent.";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

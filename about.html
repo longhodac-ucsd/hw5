@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About me</title>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <button
+      id="theme-toggle"
+      hidden
+      type="button"
+      aria-label="Toggle color theme"
+    ></button>
+    <header>
+      <noscript>javascript is disabled.</noscript>
+      <h1>About me</h1>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skillset.html">Skillset</a></li>
+          <li><a href="experiences.html">Experiences</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="experiments.html">Experiments</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section aria-labelledby="intro">
+        <h2 id="intro">Welcome</h2>
+        <p>
+          I’m Long, a CS undergrad who enjoys building data-driven tools and
+          clean, accessible UIs. Explore my
+          <a href="projects.html">projects</a> or
+          <a href="contact.html">get in touch</a>.
+        </p>
+
+        <p>
+          Portfolio completion: <progress value="60" max="100">60%</progress>
+        </p>
+
+        <picture>
+          <source srcset="assets/headshot-320.jpg" media="(max-width: 600px)" />
+          <img
+            src="assets/linkedin.jpeg"
+            alt="Headshot of Long at UCSD"
+            width="180"
+          />
+        </picture>
+      </section>
+    </main>
+
+    <footer>
+      <p><small>&copy; 2025 Long</small></p>
+    </footer>
+    <script>
+      class HelloConsole extends HTMLElement {
+        connectedCallback() {
+          console.log("Hello world!");
+        }
+      }
+      customElements.define("hello-console", HelloConsole);
+    </script>
+    <hello-console></hello-console>
+    <script src="scripts.js"></script>
+  </body>
+</html>

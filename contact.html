@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+  </head>
+  <body>
+    <noscript>javascript is disabled.</noscript>
+    <header>
+      <h1>Contact</h1>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skillset.html">Skillset</a></li>
+          <li><a href="experiences.html">Experiences</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="experiments.html">Experiments</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section aria-labelledby="contact-form">
+        <h2 id="contact-form">Send me a message</h2>
+
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Contact form</legend>
+
+            <label for="name">Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+            />
+
+            <label for="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            />
+
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" type="text" />
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Send</button>
+          </fieldset>
+        </form>
+      </section>
+
+      <section aria-labelledby="alt-contact">
+        <h2 id="alt-contact">Other ways to reach me</h2>
+        <p>
+          Email: <a href="mailto:lhodac@ucsd.edu">lhodac@ucsd.edu</a> ·
+          LinkedIn:
+          <a href="https://www.linkedin.com/in/long-hodac-06b14118b/"
+            >linkedin.com/in/long-hodac-06b14118b</a
+          >
+          · GitHub:
+          <a href="https://github.com/Longhodac">github.com/Longhodac</a>
+        </p>
+
+        <iframe
+          title="Office/Map placeholder"
+          width="300"
+          height="200"
+          srcdoc="<p style='font-family: system-ui'>My Google calendar</p>"
+        >
+        </iframe>
+      </section>
+    </main>
+
+    <footer>
+      <p><small>&copy; 2025 Long</small></p>
+    </footer>
+    <script>
+      class HelloConsole extends HTMLElement {
+        connectedCallback() {
+          console.log("Hello world!");
+        }
+      }
+      customElements.define("hello-console", HelloConsole);
+    </script>
+    <hello-console></hello-console>
+    <script src="scripts.js"></script>
+  </body>
+</html>

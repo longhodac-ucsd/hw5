@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experiments</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+  </head>
+  <body>
+    <noscript>javascript is disabled.</noscript>
+    <header>
+      <h1>Experiments</h1>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skillset.html">Skillset</a></li>
+          <li><a href="experiences.html">Experiences</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="experiments.html">Experiments</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section aria-labelledby="media-experiments">
+        <h2 id="media-experiments">Media Experiments</h2>
+        <p>
+          Various HTML5 media and interactive elements for educational purposes.
+        </p>
+
+        <article aria-labelledby="audio-demo">
+          <h3 id="audio-demo">Audio Player</h3>
+          <audio controls>
+            <source
+              src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+              type="audio/mpeg"
+            />
+            Your browser doesn't support the audio element.
+          </audio>
+        </article>
+
+        <article aria-labelledby="video-demo">
+          <h3 id="video-demo">Video Player</h3>
+          <video controls width="320">
+            <source
+              src="https://www.w3schools.com/html/mov_bbb.mp4"
+              type="video/mp4"
+            />
+            Your browser doesn't support the video element.
+          </video>
+        </article>
+
+        <article aria-labelledby="picture-demo">
+          <h3 id="picture-demo">Responsive Picture</h3>
+          <picture>
+            <source srcset="assets/test-320.jpg" media="(max-width: 600px)" />
+            <img
+              src="assets/linkedin.jpeg"
+              alt="Test image for experiments"
+              width="300"
+            />
+          </picture>
+        </article>
+
+        <article aria-labelledby="canvas-demo">
+          <h3 id="canvas-demo">Canvas Element</h3>
+          <canvas
+            id="myCanvas"
+            width="200"
+            height="100"
+            style="border: 1px solid #000"
+          >
+            Canvas not supported in your browser.
+          </canvas>
+        </article>
+
+        <article aria-labelledby="template-demo">
+          <h3 id="template-demo">Template Element</h3>
+          <p>reusable template that can be cloned via JavaScript:</p>
+          <template id="myTemplate">
+            <div>
+              <h4>Template Content</h4>
+              <p>
+                A template tag and won't render until activated by JavaScript.
+              </p>
+            </div>
+          </template>
+        </article>
+      </section>
+
+      <section aria-labelledby="back-links">
+        <h2 id="back-links">Explore More</h2>
+        <p>
+          Check out my <a href="projects.html">projects</a> or
+          <a href="contact.html">get in touch</a>.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p><small>&copy; 2025 Long</small></p>
+    </footer>
+
+    <script>
+      class HelloConsole extends HTMLElement {
+        connectedCallback() {
+          console.log("Hello world!");
+        }
+      }
+      customElements.define("hello-console", HelloConsole);
+    </script>
+    <hello-console></hello-console>
+    <script src="scripts.js"></script>
+  </body>
+</html>
