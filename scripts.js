@@ -48,14 +48,15 @@ class ProjectCard extends HTMLElement {
           --tag-bg: #f1f5f9;
           --tag-text: #475569;
 
-          display: block;
+          display: flex;
+          flex-direction: column;
           background: var(--card-bg);
           border: 1px solid var(--card-border);
           border-radius: 8px;
           padding: 1.5rem;
-          margin-bottom: 1.5rem;
           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
           overflow: hidden;
+          height: 100%;
         }
 
         :host(:hover) {

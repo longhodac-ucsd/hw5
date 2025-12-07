@@ -170,6 +170,17 @@ section:has(form) {
   padding: 2rem;
 }
 
+section:has(project-card) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  grid-auto-rows: auto;
+}
+
+section:has(project-card) h2 {
+  grid-column: 1 / -1;
+}
+
 article {
   background: var(--surface-color);
   padding: 1.5rem;
@@ -460,6 +471,37 @@ iframe {
   background: var(--border-color);
 }
 
+.data-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.data-btn {
+  padding: 0.75rem 1.5rem;
+  background: var(--accent-color);
+  color: var(--bg-color);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.9375rem;
+  font-family: var(--main-font);
+}
+
+.data-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.data-btn:active {
+  transform: translateY(0);
+}
+
 @media (max-width: 768px) {
   .menu-icon {
     display: block;
@@ -500,6 +542,11 @@ iframe {
 
   section {
     margin-bottom: 2rem;
+  }
+
+  section:has(project-card) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   h2 {

@@ -1,0 +1,45 @@
+{
+  "projects": [
+    {
+      "title": "Redis Chat Platform",
+      "image": "assets/redis.jpg",
+      "imageMobile": "assets/chat-360.jpg",
+      "alt": "Chat UI with online users and threads featuring message threads, online user list, and real-time updates",
+      "description": "Built a real-time messaging platform with TypeScript and Next.js App Router, achieving 300ms response times and 99.9% uptime. Implemented Redis pub/sub for instant message delivery, Kinde Auth for secure authentication, and Cloudinary for image uploads with moderation pipeline. Features include live user presence, threaded conversations, and CI/CD deployment with comprehensive monitoring.",
+      "link": "https://github.com/Longhodac/ChatHub-Redis-Chat-app",
+      "tags": "Next.js, TypeScript, Redis, Real-time",
+      "date": "2024-11",
+      "meta": "Includes CI/CD, deployment scripts, and monitoring dashboard"
+    },
+    {
+      "title": "E-Commerce Shopping Cart",
+      "image": "assets/ecommerce.png",
+      "alt": "Modern e-commerce interface showing product grid with shopping cart and checkout flow",
+      "description": "Developed a full-stack e-commerce platform with React frontend and Node.js backend. Implemented secure payment processing with Stripe integration, inventory management system, and user authentication. Features responsive product catalog with filtering, shopping cart with real-time updates, order history tracking, and admin dashboard for product management.",
+      "link": "https://github.com/yourusername/ecommerce-cart",
+      "tags": "React, Node.js, MongoDB, E-commerce",
+      "date": "2024-09",
+      "meta": "Payment processing with Stripe, admin dashboard, inventory tracking"
+    },
+    {
+      "title": "Image Classification Model",
+      "image": "assets/ml-model.png",
+      "alt": "Neural network visualization and classification results showing accuracy metrics",
+      "description": "Built a deep learning image classification model using TensorFlow and Keras, achieving 94% accuracy on test dataset. Implemented transfer learning with pre-trained ResNet50 architecture, custom data augmentation pipeline, and model optimization techniques. Created REST API with Flask for model deployment and integrated with web interface for real-time image classification.",
+      "link": "https://github.com/yourusername/image-classifier",
+      "tags": "Python, TensorFlow, Machine Learning",
+      "date": "2024-06",
+      "meta": "94% accuracy, REST API deployment, transfer learning implementation"
+    },
+    {
+      "title": "Task Management PWA",
+      "image": "assets/task-manager.jpg",
+      "alt": "Progressive web app interface showing task lists, calendar view, and mobile responsive design",
+      "description": "Created a Progressive Web App for collaborative task management using Vue.js 3 and Firebase. Implemented offline-first architecture with service workers, real-time collaboration features, drag-and-drop task organization, and push notifications. Features include project boards, deadline reminders, team member assignments, and calendar integration.",
+      "link": "https://github.com/yourusername/task-pwa",
+      "tags": "Vue.js, Firebase, PWA, Mobile",
+      "date": "2024-03",
+      "meta": "Offline-first, real-time sync, installable on mobile and desktop"
+    }
+  ]
+}

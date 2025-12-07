@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Projects - CRUD</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .crud-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .crud-section {
+        background: var(--surface-color);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .crud-section h2 {
+        margin-top: 0;
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 1rem;
+      }
+
+      .form-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-group label {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        font-family: var(--main-font);
+        background: var(--bg-color);
+        color: var(--text-color);
+      }
+
+      .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: var(--radius-sm);
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: var(--main-font);
+      }
+
+      .btn-primary {
+        background: var(--accent-color);
+        color: var(--bg-color);
+      }
+
+      .btn-secondary {
+        background: var(--secondary-color);
+        color: var(--bg-color);
+      }
+
+      .btn-danger {
+        background: #ef4444;
+        color: white;
+      }
+
+      .btn:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+
+      .project-list {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .project-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background: var(--bg-color);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
+      }
+
+      .project-info h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.1rem;
+      }
+
+      .project-info p {
+        margin: 0;
+        color: var(--text-light);
+        font-size: 0.875rem;
+      }
+
+      .project-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .btn-small {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+
+      .storage-toggle {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: var(--bg-color);
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border-color);
+      }
+
+      .storage-toggle label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        font-weight: 500;
+      }
+
+      .status-message {
+        padding: 1rem;
+        border-radius: var(--radius-sm);
+        margin-bottom: 1rem;
+        display: none;
+      }
+
+      .status-message.success {
+        background: #dcfce7;
+        color: #166534;
+        border: 1px solid #86efac;
+        display: block;
+      }
+
+      .status-message.error {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <button
+      id="theme-toggle"
+      hidden
+      type="button"
+      aria-label="Toggle color theme"
+    ></button>
+
+    <header>
+      <h1>Manage Projects</h1>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skillset.html">Skillset</a></li>
+          <li><a href="experiences.html">Experiences</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="crud.html">Manage Projects</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="crud-container">
+      <div id="status-message" class="status-message"></div>
+
+      <div class="storage-toggle">
+        <label>
+          <input type="radio" name="storage" value="local" checked />
+          Use LocalStorage
+        </label>
+        <label>
+          <input type="radio" name="storage" value="remote" />
+          Use Remote API (JSONBin)
+        </label>
+      </div>
+
+      <!-- CREATE Section -->
+      <section class="crud-section">
+        <h2>Create New Project</h2>
+        <form id="create-form" class="form-grid">
+          <div class="form-group">
+            <label for="create-title">Project Title *</label>
+            <input type="text" id="create-title" required />
+          </div>
+
+          <div class="form-group">
+            <label for="create-image">Image URL *</label>
+            <input type="url" id="create-image" required placeholder="assets/project.jpg" />
+          </div>
+
+          <div class="form-group">
+            <label for="create-alt">Image Alt Text *</label>
+            <input type="text" id="create-alt" required />
+          </div>
+
+          <div class="form-group">
+            <label for="create-description">Description *</label>
+            <textarea id="create-description" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="create-link">Project Link *</label>
+            <input type="url" id="create-link" required placeholder="https://github.com/username/project" />
+          </div>
+
+          <div class="form-group">
+            <label for="create-tags">Tags (comma-separated) *</label>
+            <input type="text" id="create-tags" required placeholder="React, Node.js, MongoDB" />
+          </div>
+
+          <div class="form-group">
+            <label for="create-date">Date (YYYY-MM) *</label>
+            <input type="text" id="create-date" required placeholder="2024-12" pattern="\d{4}-\d{2}" />
+          </div>
+
+          <div class="form-group">
+            <label for="create-meta">Meta Information</label>
+            <input type="text" id="create-meta" placeholder="Additional details about the project" />
+          </div>
+
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary">Create Project</button>
+            <button type="reset" class="btn btn-secondary">Clear Form</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- UPDATE Section -->
+      <section class="crud-section">
+        <h2>Update Existing Project</h2>
+        <div class="form-group">
+          <label for="update-select">Select Project to Update</label>
+          <select id="update-select">
+            <option value="">-- Select a project --</option>
+          </select>
+        </div>
+
+        <form id="update-form" class="form-grid" style="margin-top: 1.5rem;">
+          <input type="hidden" id="update-index" />
+
+          <div class="form-group">
+            <label for="update-title">Project Title *</label>
+            <input type="text" id="update-title" required />
+          </div>
+
+          <div class="form-group">
+            <label for="update-image">Image URL *</label>
+            <input type="url" id="update-image" required />
+          </div>
+
+          <div class="form-group">
+            <label for="update-alt">Image Alt Text *</label>
+            <input type="text" id="update-alt" required />
+          </div>
+
+          <div class="form-group">
+            <label for="update-description">Description *</label>
+            <textarea id="update-description" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="update-link">Project Link *</label>
+            <input type="url" id="update-link" required />
+          </div>
+
+          <div class="form-group">
+            <label for="update-tags">Tags (comma-separated) *</label>
+            <input type="text" id="update-tags" required />
+          </div>
+
+          <div class="form-group">
+            <label for="update-date">Date (YYYY-MM) *</label>
+            <input type="text" id="update-date" required pattern="\d{4}-\d{2}" />
+          </div>
+
+          <div class="form-group">
+            <label for="update-meta">Meta Information</label>
+            <input type="text" id="update-meta" />
+          </div>
+
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary">Update Project</button>
+            <button type="button" class="btn btn-secondary" id="cancel-update">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- DELETE Section -->
+      <section class="crud-section">
+        <h2>Delete Projects</h2>
+        <p>Click the delete button next to any project to remove it.</p>
+        <div id="delete-list" class="project-list">
+          <!-- Projects will be loaded here -->
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p><small>&copy; 2025 Long</small></p>
+    </footer>
+
+    <script>
+      class HelloConsole extends HTMLElement {
+        connectedCallback() {
+          console.log("Hello world!");
+        }
+      }
+      customElements.define("hello-console", HelloConsole);
+    </script>
+    <hello-console></hello-console>
+    <script src="scripts.js"></script>
+    <script src="crud-operations.js"></script>
+  </body>
+</html>
