@@ -105,42 +105,95 @@ function createProjectCard(project) {
 function renderProjects(projects) {
   const container = document.getElementById('school');
 
-  // Clear existing project cards (keep the h2)
-  const existingCards = container.querySelectorAll('project-card');
+  // Fade out existing cards and skeletons
+  const existingCards = container.querySelectorAll('project-card, .skeleton-card');
+  existingCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(10px)';
+  });
+
+  // Wait for fade out, then add new cards
+  setTimeout(() => {
+    existingCards.forEach(card => card.remove());
+
+    // Add new cards with staggered animation
+    projects.forEach((project, index) => {
+      const card = createProjectCard(project);
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+      container.appendChild(card);
+
+      // Trigger animation after a small delay
+      setTimeout(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, 50 + (index * 80));
+    });
+  }, 200);
+}
+
+/**
+ * Show skeleton loading state
+ */
+function showLoadingState() {
+  const container = document.getElementById('school');
+  const existingCards = container.querySelectorAll('project-card, .skeleton-card');
   existingCards.forEach(card => card.remove());
 
-  // Add new cards
-  projects.forEach(project => {
-    const card = createProjectCard(project);
-    container.appendChild(card);
-  });
+  // Create 3 skeleton cards
+  for (let i = 0; i < 3; i++) {
+    const skeleton = document.createElement('div');
+    skeleton.className = 'skeleton skeleton-card';
+    container.appendChild(skeleton);
+  }
 }
 
 /**
  * Load projects from localStorage
  */
 function loadLocalProjects() {
-  try {
-    const data = localStorage.getItem('projectsData');
-    if (!data) {
-      console.error('No data found in localStorage');
-      alert('No local data found. Please try loading remote data first.');
-      return;
-    }
+  const btn = document.getElementById('load-local');
+  btn.classList.add('loading');
+  btn.disabled = true;
 
-    const projectsData = JSON.parse(data);
-    renderProjects(projectsData.projects);
-    console.log('Projects loaded from localStorage:', projectsData.projects.length);
-  } catch (error) {
-    console.error('Error loading from localStorage:', error);
-    alert('Error loading local data. Please check the console for details.');
-  }
+  showLoadingState();
+
+  // Slight delay for smooth transition
+  setTimeout(() => {
+    try {
+      const data = localStorage.getItem('projectsData');
+      if (!data) {
+        console.error('No data found in localStorage');
+        alert('No local data found. Please try loading remote data first.');
+        btn.classList.remove('loading');
+        btn.disabled = false;
+        return;
+      }
+
+      const projectsData = JSON.parse(data);
+      renderProjects(projectsData.projects);
+      console.log('Projects loaded from localStorage:', projectsData.projects.length);
+    } catch (error) {
+      console.error('Error loading from localStorage:', error);
+      alert('Error loading local data. Please check the console for details.');
+    } finally {
+      btn.classList.remove('loading');
+      btn.disabled = false;
+    }
+  }, 150);
 }
 
 /**
  * Load projects from remote API
  */
 async function loadRemoteProjects() {
+  const btn = document.getElementById('load-remote');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  showLoadingState();
+
   try {
     const response = await fetch(JSONBIN_URL, {
       headers: {
@@ -171,6 +224,9 @@ async function loadRemoteProjects() {
       console.error('Fallback also failed:', fallbackError);
       alert('Unable to load data. Please check your connection.');
     }
+  } finally {
+    btn.classList.remove('loading');
+    btn.disabled = false;
   }
 }
 
